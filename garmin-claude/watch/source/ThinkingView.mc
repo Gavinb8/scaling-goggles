@@ -39,7 +39,7 @@ class ThinkingView extends WatchUi.View {
         }
     }
 
-    function onTick() {
+    function onTick() as Void {
         _dotCount = (_dotCount + 1) % 4;
 
         if (System.getTimer() - _startedAt > Protocol.RESPONSE_TIMEOUT_MS) {

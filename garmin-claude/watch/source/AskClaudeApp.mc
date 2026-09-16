@@ -13,7 +13,7 @@ class AskClaudeApp extends Application.AppBase {
         Communications.registerForPhoneAppMessages(method(:onPhoneMessage));
     }
 
-    function onPhoneMessage(msg) {
+    function onPhoneMessage(msg as Communications.PhoneAppMessage) as Void {
         ClaudeBridge.onPhoneMessage(msg);
     }
 
