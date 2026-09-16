@@ -1,0 +1,18 @@
+{
+  "name": "ask-claude-bridge-server",
+  "version": "0.1.0",
+  "description": "Optional bridge server so the Claude API key doesn't have to live on the phone. The Android companion app can point at this instead of calling Anthropic directly (set BRIDGE_SERVER_URL).",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "dotenv": "^16.4.5"
+  }
+}

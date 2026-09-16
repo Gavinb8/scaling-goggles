@@ -1,0 +1,30 @@
+# --- Secrets: never commit these ---
+android/secrets.properties
+server/.env
+**/*.der
+**/*.jks
+**/*.keystore
+
+# --- Connect IQ / Monkey C build output ---
+watch/bin/
+watch/bin.zip
+watch/gen/
+
+# --- Android / Gradle ---
+android/local.properties
+android/.gradle/
+android/**/build/
+android/.idea/
+android/*.iml
+android/captures/
+android/.cxx/
+
+# --- Node (server) ---
+server/node_modules/
+server/dist/
+server/npm-debug.log*
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+.vscode/

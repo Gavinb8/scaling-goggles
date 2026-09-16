@@ -1,0 +1,32 @@
+<iq:manifest xmlns:iq="http://www.garmin.com/xml/connectiq" version="3">
+    <iq:application
+        entry="AskClaudeApp"
+        id="d586b178-b05c-49de-b6cd-11db8fdf9170"
+        launcherIcon="@Drawables.LauncherIcon"
+        name="@Strings.AppName"
+        type="watch-app"
+        minApiLevel="3.4.0">
+
+        <!--
+            Product IDs must match the Connect IQ SDK Manager's device list.
+            venu3 / venu3s are the Venu 3 (46mm) and Venu 3S (41mm).
+            Add more product ids here later if you want this to run on other watches.
+        -->
+        <iq:products>
+            <iq:product id="venu3"/>
+            <iq:product id="venu3s"/>
+        </iq:products>
+
+        <iq:permissions>
+            <!-- Communications covers Communications.transmit / registerForPhoneAppMessages,
+                 which is the only channel this app uses to reach the phone. -->
+            <iq:uses-permission id="Communications"/>
+        </iq:permissions>
+
+        <iq:languages>
+            <iq:language>eng</iq:language>
+        </iq:languages>
+
+        <iq:barrels/>
+    </iq:application>
+</iq:manifest>
