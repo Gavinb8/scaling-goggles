@@ -30,3 +30,32 @@ class PromptPickerDelegate extends WatchUi.TextPickerDelegate {
         return true;
     }
 }
+
+//
+// Single entry point for opening the on-watch keyboard.
+//
+// TextPicker is not guaranteed to exist on every Connect IQ device, so this
+// guards with `WatchUi has :TextPicker` the way Garmin's own Keyboard sample
+// does. Without the check, a device lacking on-screen text entry crashes here
+// instead of telling the user to ask from the phone. The manifest targets
+// venu3s as well as venu3, so this is not purely theoretical.
+//
+module PromptEntry {
+
+    function start(isFollowUp) {
+        if (!(WatchUi has :TextPicker)) {
+            WatchUi.pushView(
+                new ResponseView("This watch has no on-screen keyboard. Ask from the AskClaude app on your phone instead.", true),
+                new ResponseDelegate(),
+                WatchUi.SLIDE_UP
+            );
+            return;
+        }
+
+        WatchUi.pushView(
+            new WatchUi.TextPicker(""),
+            new PromptPickerDelegate(isFollowUp),
+            WatchUi.SLIDE_UP
+        );
+    }
+}

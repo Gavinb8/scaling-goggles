@@ -115,8 +115,7 @@ class ImageDelegate extends WatchUi.BehaviorDelegate {
     }
 
     function onTap(evt) {
-        var picker = new WatchUi.TextPicker("");
-        WatchUi.pushView(picker, new PromptPickerDelegate(true), WatchUi.SLIDE_UP);
+        PromptEntry.start(true);
         return true;
     }
 }

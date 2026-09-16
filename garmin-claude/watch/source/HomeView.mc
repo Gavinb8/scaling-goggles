@@ -69,7 +69,6 @@ class HomeDelegate extends WatchUi.BehaviorDelegate {
     }
 
     function _startQuestion() {
-        var picker = new WatchUi.TextPicker("");
-        WatchUi.pushView(picker, new PromptPickerDelegate(false), WatchUi.SLIDE_UP);
+        PromptEntry.start(false);
     }
 }
