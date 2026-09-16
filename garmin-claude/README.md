@@ -22,12 +22,28 @@ steps.
 
 ## Status
 
-This was built in a sandboxed environment with no Garmin/Android SDKs and
-no access to `developer.garmin.com` -- **the code has not been compiled or
-run yet.** It's written to be genuinely installable, not a mockup, but
-follow `docs/setup.md` phase-by-phase on your actual machine and expect to
-fix a small compile error or two on first build (flagged in
-`docs/limitations.md` wherever I couldn't verify an exact API signature).
+This was originally built in a sandboxed environment with no Garmin/Android
+SDKs and no access to `developer.garmin.com`, so it shipped uncompiled. That
+is no longer true of the watch side.
+
+**Watch app: builds and runs.** Verified 2026-09-16 against Connect IQ SDK
+9.2.0, built for both `venu3` and `venu3s`, running in the Venu 3 simulator.
+The home screen renders and the on-watch keyboard opens. Two type errors had
+to be fixed first (see the git history); the Monkey C type checker requires
+explicit `as Void` annotations on callbacks handed to the SDK.
+
+**Bridge server: verified.** `server/` boots, `/health` responds, and a real
+request reaches the Anthropic API.
+
+**Android companion app: still uncompiled.** Nothing in `android/` has been
+built. Expect the same class of type/signature fixes there, for the reason
+given in `docs/limitations.md`.
+
+**Not yet verified on real hardware.** Everything above is the simulator. In
+particular the simulator draws system UI (the `TextPicker` keyboard) as a
+crude off-center approximation; that is the simulator, not this app, and it
+reproduces identically in a stub app containing no layout code. How it looks
+on an actual Venu 3 is still unconfirmed.
 
 ## Project layout
 
