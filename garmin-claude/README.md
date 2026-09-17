@@ -35,9 +35,24 @@ explicit `as Void` annotations on callbacks handed to the SDK.
 **Bridge server: verified.** `server/` boots, `/health` responds, and a real
 request reaches the Anthropic API.
 
-**Android companion app: still uncompiled.** Nothing in `android/` has been
-built. Expect the same class of type/signature fixes there, for the reason
-given in `docs/limitations.md`.
+**Android companion app: builds.** Verified 2026-09-17. `./gradlew
+:app:assembleDebug` produces a 6.5 MB debug APK against Android SDK 34 and
+JDK 17, with two warnings and no errors. `docs/limitations.md` expected
+signature fixes here; none were needed. Every Connect IQ SDK call in
+`ClaudeBridgeService.kt` was checked against the real
+`ciq-companion-app-sdk:2.4.0` AAR (`getInstance`, `initialize`,
+`getConnectedDevices`, `registerForAppEvents`, `sendMessage`, `IQApp(String)`,
+`IQDevice.getFriendlyName`) and all of them match.
+
+The project had no Gradle wrapper; one is now committed, so `./gradlew` works
+from a clean clone. You still need `android/local.properties` with
+`sdk.dir=/path/to/android-sdk` (gitignored), and `android/secrets.properties`
+with your API key before the app can reach Claude.
+
+Note on Android 11+ package visibility: the app binds to Garmin Connect
+Mobile, which normally needs a `<queries>` declaration. The Connect IQ AAR
+already declares it and it merges in automatically, so nothing is needed in
+this app's manifest.
 
 **Not yet verified on real hardware.** Everything above is the simulator. In
 particular the simulator draws system UI (the `TextPicker` keyboard) as a
